@@ -1,12 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native';
+import { Locations } from './components/Locations'
+import { AddLocation } from './components/AddLocation'
+import { MapView } from './components/MapView';
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Locations' component={Locations}/>
+        <Stack.Screen name='Add New Location' component={AddLocation}/>
+        <Stack.Screen name='Map View' component={MapView}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
