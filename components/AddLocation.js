@@ -1,20 +1,17 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Button } from 'react-native-paper';
 
 export function AddLocation({navigation}){
     return(
         <View>
-            <Pressable onPress={() => navigation.navigate('Locations')}>
-                <Text>Form for adding new location are shown here</Text>
-            </Pressable>
-            <Form></Form>
+            <Form navigation={navigation}></Form>
+            
         </View>
     )
 }
 
-
-
-function Form(){
+function Form({navigation}){
     
     const [nameC, setNameC] = useState('')
     const [desc, setDesc] = useState('')
@@ -33,6 +30,7 @@ function Form(){
                 value={desc}
                 placeholder="Country description"
             />
+            <Button mode='contained' onPress={() => navigation.navigate('Locations', {nameC, desc})}>Add</Button>
         </View>
         
     )
