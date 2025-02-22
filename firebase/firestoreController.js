@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { db, AREAS_REF } from './Config'
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
+
 
 export function UseFireAreas(){
     const [areas, setAreas] = useState([])
@@ -17,8 +18,10 @@ export function UseFireAreas(){
        })
 
     },[])
-
-    
-
     return areas;
+}
+
+export function addAreaInfo(areaName, areaDesc){
+    addDoc( collection(db, AREAS_REF), {areaName, areaDesc} )
+        .catch(error => console.log(error.message))
 }

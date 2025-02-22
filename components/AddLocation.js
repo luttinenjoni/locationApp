@@ -6,7 +6,6 @@ export function AddLocation({navigation}){
     return(
         <View>
             <Form navigation={navigation}></Form>
-            
         </View>
     )
 }

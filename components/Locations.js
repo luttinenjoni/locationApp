@@ -1,34 +1,34 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { Button, Text } from 'react-native-paper';
+import { addAreaInfo, UseFireAreas } from '../firebase/firestoreController';
 
 export function Locations({navigation, route}){
 
+    const areas = UseFireAreas()
     const nameC = route?.params?.nameC
     const desc = route?.params?.desc
 
-    const [cData, setcData] = useState([])
-
     useEffect(() => {
         if (nameC && desc) {
-            setcData(c => [...c, nameC + ' ' + desc]);}
+            addAreaInfo(nameC, desc)}
         
     }, [nameC, desc]);
-
-    const RenderItem = (value) => {
-        return(
-            <Text style={styles.countrycell}>{value.item}</Text>
-        )
-    }
 
     return(
 
         <View>
             <Text>Locations are shown here</Text>
+            <Button onPress={()=> addAreaInfo(areaName='Paris', areaDesc='Ylimielisiä ja eivätkä osaa enkkuu')}>Add test area</Button>
             <Button mode='contained' onPress={() => navigation.navigate('Add New Location')}>Add a new location</Button>
             <FlatList 
-                 data={cData}
-                 renderItem={({item}) => <RenderItem item={item}/>}
+                 data={areas}
+                 renderItem={({item}) => <View> 
+                                            <Text>{item.areaName}</Text>
+                                            <Text>{item.areaDesc}</Text>
+                                        </View>
+                 
+                 }
             />
         </View>
     )

@@ -10,10 +10,6 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
 
-  const areas = UseFireAreas()
-
-  console.log(areas)
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
