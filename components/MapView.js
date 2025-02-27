@@ -5,26 +5,46 @@ import { useEffect, useState } from 'react';
 import MapView from 'react-native-maps';
 import Constants from 'expo-constants'
 
-
-export function MapViews(){
-    const [latitude, setLatitude] = useState(0)
-    const [longitude, setLongitude] = useState(0)
+export function MapViews({ route }){
+    const [latitude, setLatitude] = useState(null)
+    const [longitude, setLongitude] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [place, setPlace] = useState('')
+    const [locationError, setLocationError] = useState(false);
 
-    useEffect(() =>{
+    useEffect(() => {
+        setIsLoading(true);
         (async () => {
-            let {status} = await Location.requestForegroundPermissionsAsync()
+            let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                setIsLoading(false)
-                console.log('Geolocation failed')
+                setIsLoading(false);
+                console.log('Geolocation permission not granted');
                 return;
             }
-            const location = await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Lowest})
-            setLatitude(location.coords.latitude)
-            setLongitude(location.coords.longitude)
-            setIsLoading(false) 
+            try {
+                    const location = await Location.geocodeAsync(place);
+                    if (location.length > 0) {
+                        setLatitude(location[0].latitude);
+                        setLongitude(location[0].longitude);                
+                        setIsLoading(false);
+                        setLocationError(false);
+                    } else {
+                        setLocationError(true);
+                        setIsLoading(false)
+                    }
+            } catch (e) {
+                console.error('Error geocoding location:', e);
+                setLocationError(true);
+                setIsLoading(false);
+            }
         })();
-    },[])
+    }, [place]);
+
+    useEffect(() => {
+        if (route.params?.place) {
+            setPlace(route.params.place);
+        }
+    }, [route.params]);
 
     if(isLoading){
         return(
@@ -32,16 +52,21 @@ export function MapViews(){
         )
     }
 
+    if (locationError) {
+        return (
+            <View style={styles.container}>
+                <Text>No location found! Please try again.</Text>
+            </View>
+        );
+    }
+  
     return(
         <View style={styles.container}>
-            <Text>Map view for specific area is shown here</Text>
-            <Text>{latitude}</Text>
-            <Text>{longitude}</Text>
             <MapView 
                 style={styles.map}
                 initialRegion={{
-                    latitude: 65.0800,
-                    longitude: 25.4800,
+                    latitude: latitude,
+                    longitude: longitude,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 }}

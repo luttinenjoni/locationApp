@@ -21,7 +21,7 @@ export function UseFireAreas(){
     return areas;
 }
 
-export function addAreaInfo(areaName, areaDesc){
-    addDoc( collection(db, AREAS_REF), {areaName, areaDesc} )
+export function addAreaInfo(areaName, areaDesc, rating){
+    addDoc( collection(db, AREAS_REF), {areaName, areaDesc, rating} )
         .catch(error => console.log(error.message))
 }

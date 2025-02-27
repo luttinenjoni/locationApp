@@ -1,10 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native';
 import { Locations } from './components/Locations'
 import { AddLocation } from './components/AddLocation'
 import { MapViews } from './components/MapView';
-import { UseFireAreas } from './firebase/firestoreController';
 
 const Stack = createNativeStackNavigator()
 

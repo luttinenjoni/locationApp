@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
+import StarRating from 'react-native-star-rating-widget';
 
 export function AddLocation({navigation}){
     return(
@@ -14,6 +15,10 @@ function Form({navigation}){
     
     const [nameC, setNameC] = useState('')
     const [desc, setDesc] = useState('')
+    const [rating, setRating] = useState(0);
+  
+
+
 
     return(
         <View>
@@ -28,8 +33,12 @@ function Form({navigation}){
                 onChangeText={setDesc}
                 value={desc}
                 placeholder="Country description"
+            />    
+            <StarRating
+                rating={rating}
+                onChange={setRating}
             />
-            <Button mode='contained' onPress={() => navigation.navigate('Locations', {nameC, desc})}>Add</Button>
+            <Button mode='contained' onPress={() => navigation.navigate('Locations', {nameC, desc, rating})}>Add</Button>
         </View>
         
     )
