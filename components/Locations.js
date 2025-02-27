@@ -26,20 +26,24 @@ export function Locations({navigation, route,}){
     return(
 
         <View>
-            <Button style={styles.button} mode='contained' onPress={() => navigation.navigate('Add New Location')}>Add a new location</Button>
             <FlatList style={styles.list}
                  data={areas}
-                 renderItem={({item}) => <View style={styles.countrycell}> 
-                                            <Text variant='headlineLarge'>{item.areaName}</Text>
-                                            <Text variant='bodyMedium'>{item.areaDesc}</Text>
-                                            <StarRatingDisplay
-                                                rating={item.rating}/>
-                                            <Pressable onPress={() => { handleAreaNameChange(item)}}>
-                                                <Icon style={styles.icon} name="map-marker" size={50}/>
-                                            </Pressable>
-                                        </View>
-                 }
-            />
+                 renderItem={({item}) => 
+                    <View style={styles.countrycell}> 
+                        <Text variant='headlineLarge'>{item.areaName}</Text>
+                        <Text variant='bodyMedium'>{item.areaDesc}</Text>
+                        <StarRatingDisplay
+                            rating={item.rating}/>
+                        <Pressable onPress={() => { handleAreaNameChange(item)}}>
+                            <Icon style={styles.icon} name="map-marker" size={50}/>
+                        </Pressable>
+                    </View> }
+            />            
+            <Button 
+                style={styles.button} 
+                mode='contained' 
+                onPress={() => navigation.navigate('Add New Location')}>Add a new location
+            </Button>
         </View>
     )
 }
@@ -54,7 +58,6 @@ const styles = StyleSheet.create({
       margin: 10,
     },
     icon:{
-        flex: 1,
         alignSelf: 'flex-end',
     },
     button: {
@@ -65,6 +68,6 @@ const styles = StyleSheet.create({
         borderRadius:15,
         padding: 8,
         margin: 8,
-        marginBottom: 115
+        height: 680
     }
   });

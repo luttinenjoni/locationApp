@@ -48,14 +48,14 @@ export function MapViews({ route }){
 
     if(isLoading){
         return(
-            <View style={styles.container}><Text>Retrieving location...</Text></View>
+            <View><Text style={styles.info}>Retrieving location...</Text></View>
         )
     }
 
     if (locationError) {
         return (
-            <View style={styles.container}>
-                <Text>No location found! Please try again.</Text>
+            <View>
+                <Text style={styles.info}>No location found! Please try again.</Text>
             </View>
         );
     }
@@ -84,4 +84,9 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height - Constants.statusBarHeight,
     },
+    info: {
+        margin: 20,
+        fontSize: 25,
+        textAlign: 'center'
+    }
 })

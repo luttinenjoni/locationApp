@@ -11,7 +11,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='Locations' component={Locations}/>
+        <Stack.Screen name='My Added Locations' component={Locations}/>
         <Stack.Screen name='Add New Location' component={AddLocation}/>
         <Stack.Screen name='Map View' component={MapViews}/>
       </Stack.Navigator>
