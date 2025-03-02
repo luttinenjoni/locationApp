@@ -1,27 +1,8 @@
-import { useEffect, useState } from "react";
-import { db, AREAS_REF } from './Config'
-import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
-
-
-export function UseFireAreas(){
-    const [areas, setAreas] = useState([])
-
-    useEffect(() => 
-    { 
-
-       const q = query(collection(db, AREAS_REF))
-
-       onSnapshot(q, querySnapshot => {
-            setAreas( querySnapshot.docs.map(doc => {
-                return {id: doc.id, ...doc.data()}
-            }))
-       })
-
-    },[])
-    return areas;
-}
+import { auth, db, USERS_REF, AREAS_REF } from './Config'
+import { addDoc, collection } from "firebase/firestore";
 
 export function addAreaInfo(areaName, areaDesc, rating){
-    addDoc( collection(db, AREAS_REF), {areaName, areaDesc, rating} )
+    const subColRef = collection(db, USERS_REF, auth.currentUser.uid, AREAS_REF);
+    addDoc( subColRef, {areaName, areaDesc, rating} )
         .catch(error => console.log(error.message))
 }

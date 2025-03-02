@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
 import StarRating from 'react-native-star-rating-widget';
 
@@ -15,10 +15,7 @@ function Form({navigation}){
     
     const [nameC, setNameC] = useState('')
     const [desc, setDesc] = useState('')
-    const [rating, setRating] = useState(0);
-  
-
-
+    const [rating, setRating] = useState(0)
 
     return(
         <View style={styles.list}>

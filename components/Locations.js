@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, View, FlatList, Pressable } from 'react-native';
 import { Text, Button } from 'react-native-paper';
-import { addAreaInfo, UseFireAreas } from '../firebase/firestoreController';
+import { addAreaInfo } from '../firebase/firestoreController';
+import { useFireAuth } from '../firebase/FireStoreAuthContr';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 
 
-export function Locations({navigation, route,}){
+export function Locations({navigation, route}){
 
-    const areas = UseFireAreas()
+
+    const [user, areas] = useFireAuth()
     const nameC = route?.params?.nameC
     const desc = route?.params?.desc
     const rating = route?.params?.rating
@@ -19,26 +21,24 @@ export function Locations({navigation, route,}){
     }, [nameC, desc, rating]);
 
     const handleAreaNameChange = (item) => {
-        navigation.navigate('Map View', { place: item.areaName });
-    };
-    
+        navigation.navigate('Map View', { place: item?.areaName });
+    };    
 
     return(
-
         <View>
             <FlatList style={styles.list}
                  data={areas}
                  renderItem={({item}) => 
                     <View style={styles.countrycell}> 
-                        <Text variant='headlineLarge'>{item.areaName}</Text>
-                        <Text variant='bodyMedium'>{item.areaDesc}</Text>
+                        <Text variant='headlineLarge'>{item?.areaName}</Text>
+                        <Text variant='bodyMedium'>{item?.areaDesc}</Text>
                         <StarRatingDisplay
-                            rating={item.rating}/>
+                            rating={item?.rating}/>
                         <Pressable onPress={() => { handleAreaNameChange(item)}}>
                             <Icon style={styles.icon} name="map-marker" size={50}/>
                         </Pressable>
                     </View> }
-            />            
+            />  
             <Button 
                 style={styles.button} 
                 mode='contained' 
