@@ -59,7 +59,7 @@ export default function Login({navigation}){
                 left={<TextInput.Icon icon={'lock'}/>}
                 secureTextEntry={true}
             />
-            <Button mode='contained' onPress={() => {signAction(); navigation.navigate('My Added Locations')}}>
+            <Button mode='contained' onPress={() => {signAction(); navigation.navigate('My Added Locations', {nickname})}}>
                { register ? 'Register' : 'Login'}
             </Button>
         </SafeAreaView>
@@ -69,6 +69,8 @@ export default function Login({navigation}){
 const Styles = StyleSheet.create({
     loginView:{
         gap: 10,
-        padding: 10
+        padding: 10,
+        height: 1000,
+        backgroundColor: '#D7FFF1'
     }
 })
