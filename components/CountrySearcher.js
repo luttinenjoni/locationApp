@@ -5,18 +5,27 @@ import { StyleSheet, View, TextInput, FlatList, Text, Image } from 'react-native
 export function Searcher() {
 
     const [searchText, setSearchText] = useState('')
-    const [searchData, setSearchData] = useState('')
+    const [searchData, setSearchData] = useState([])
+    const [allCountries, setAllCountries] = useState([]);
 
     useEffect(() => {
-        fetch(`https://restcountries.com/v3.1/name/${searchText}`)
+        fetch('https://restcountries.com/v3.1/all')
             .then(resp => resp.json())
             .then(data => {
-                setSearchData(data.map(country => ({
+                setAllCountries(data.map(country => ({
                     name: country.name.common,
                     flag: country.flags.png
                 })));
-            })
-    }, [searchText]);
+            });
+    }, []);
+
+    useEffect(() => {
+        const filteredCountries = allCountries.filter(country =>
+            country.name.toLowerCase().startsWith(searchText.toLowerCase())
+        )
+        .sort((a, b) => a.name.localeCompare(b.name));
+        setSearchData(filteredCountries);
+    }, [searchText, allCountries]);
 
     return (
         <View style={styles.background}>
@@ -25,7 +34,7 @@ export function Searcher() {
                 value={searchText}
                 placeholder='Search...'
             />
-        <FlatList
+        <FlatList style={styles.list}
             data={searchData}
             renderItem={({ item }) => (
                 <View style={styles.countryItem}>
@@ -63,5 +72,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         margin: 10,
         backgroundColor: '#F8F991'
-      }
+      },
+      list: {
+        borderWidth: 3,
+        borderRadius:15,
+        borderColor: '#708B75',
+        margin: 20,
+        backgroundColor:'#708B75'
+    },
 })
