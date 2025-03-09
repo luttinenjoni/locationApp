@@ -4,7 +4,6 @@ import { Locations } from './components/Locations'
 import { AddLocation } from './components/AddLocation'
 import { MapViews } from './components/MapView';
 import Login from './components/Login';
-import { StyleSheet } from 'react-native';
 
 const Stack = createNativeStackNavigator()
 
@@ -14,7 +13,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator  screenOptions={{
           headerStyle: {
-            backgroundColor: '#77AF9C'
+            backgroundColor: '#F8F991'
           }
         }}>
         <Stack.Screen  name='Login/Register' component={Login}/>
@@ -25,9 +24,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const Styles = StyleSheet.create({
-  container:{
-    backgroundColor: '#D7FFF1'
-  }
-})

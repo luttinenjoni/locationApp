@@ -46,27 +46,28 @@ function Form({navigation}){
 
 const styles = StyleSheet.create({
     list: {
-        margin:15,
-        borderWidth: 1.5,
-        borderRadius: 5,
         padding: 20,
+        gap: 5,
+        height: 810,
+        backgroundColor: '#444B6E'
     },
     input: {
       height: 40,
       margin: 5,
-      borderWidth: 1,
       borderRadius: 5,
       padding: 10,
+      backgroundColor: '#F8F991'
     },
     rating: {
         padding:6,
-        borderWidth:1,
+        borderWidth:2,
+        borderColor: '#F8F991',
         borderRadius: 5,
         width: 230,
         margin: 5,
         alignSelf: 'center'
     },
     button: {
-        margin: 10,
+        backgroundColor: '#3D315B'
     }
   });

@@ -33,33 +33,33 @@ export default function Login({navigation}){
 
     return(
         <SafeAreaView style={Styles.loginView}>
-            <SegmentedButtons
+            <SegmentedButtons 
                 value={register}
                 onValueChange={setRegister}
                 buttons={buttons}
             />
             { register &&
-                <TextInput
+                <TextInput style={Styles.inputs}
                     value={nickname}
                     onChangeText={setNickname}
                     label={'Nickname'}
                     left={<TextInput.Icon icon={'account'}/>}
                 />
             }   
-            <TextInput
+            <TextInput style={Styles.inputs}
                 value={email}
                 onChangeText={setEmail}
                 label={'Email'}
                 left={<TextInput.Icon icon={'email'}/>}
             />
-            <TextInput
+            <TextInput style={Styles.inputs}
                 value={pw}
                 onChangeText={setPw}
                 label={'Password'}
                 left={<TextInput.Icon icon={'lock'}/>}
                 secureTextEntry={true}
             />
-            <Button mode='contained' onPress={() => {signAction(); navigation.navigate('My Added Locations', {nickname})}}>
+            <Button style={Styles.button} mode='contained' onPress={() => {signAction(); navigation.navigate('My Added Locations', {nickname})}}>
                { register ? 'Register' : 'Login'}
             </Button>
         </SafeAreaView>
@@ -71,6 +71,12 @@ const Styles = StyleSheet.create({
         gap: 10,
         padding: 10,
         height: 1000,
-        backgroundColor: '#D7FFF1'
+        backgroundColor: '#444B6E'
+    },
+    button:{
+        backgroundColor: '#3D315B'
+    },
+    inputs:{
+        backgroundColor: '#F8F991'
     }
 })

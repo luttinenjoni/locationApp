@@ -54,14 +54,14 @@ export function MapViews({ route }){
 
     if (locationError) {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.info}>No location found! Please try again.</Text>
             </View>
         );
     }
   
     return(
-        <View style={styles.container}>
+        <View>
             <MapView 
                 style={styles.map}
                 initialRegion={{
@@ -77,8 +77,8 @@ export function MapViews({ route }){
 
 const styles = StyleSheet.create({
     container: {
-        textAlign: 'center',
-        margin: 3
+        backgroundColor: '#F06449',
+        height: '810'
     },
     map: {
         width: Dimensions.get('window').width,

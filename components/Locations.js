@@ -50,17 +50,16 @@ export function Locations({navigation, route}){
 
 const styles = StyleSheet.create({
     background: {
-        backgroundColor: '#D7FFF1',
+        backgroundColor: '#444B6E',
         height: '810'
     },
     countrycell: {
-      borderWidth: 1,
       borderRadius: 10,
       alignContent: 'center',
       textAlign: 'center',
       padding: 20,
       margin: 10,
-      backgroundColor:'#D7FFF1'
+      backgroundColor:'#F8F991'
     },
     icon:{
         alignSelf: 'flex-end',
@@ -70,24 +69,22 @@ const styles = StyleSheet.create({
         margin: 15,
         marginBottom: 45,
         padding: 5,
-        backgroundColor: '#285943'
+        backgroundColor: '#3D315B'
     },
     list: {
         borderWidth: 3,
         borderRadius:15,
-        borderColor: '#8CD790',
+        borderColor: '#708B75',
         padding: 15,
         margin: 10,
         height: 600,
-        backgroundColor:'#8CD790'
+        backgroundColor:'#708B75'
     },
     logged: {
-        borderWidth: 1,
         borderRadius: 10,
-        borderColor: '#AAFCB8',
         alignContent: 'center',
         padding: 8,
         margin: 10,
-        backgroundColor: '#AAFCB8'
+        backgroundColor: '#9AB87A'
       },
   });
