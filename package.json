@@ -27,7 +27,9 @@
     "react-native-star-rating-widget": "^1.9.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@react-native-community/cli": "latest"
   },
   "private": true
+  
 }
