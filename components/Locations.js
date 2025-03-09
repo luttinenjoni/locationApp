@@ -39,11 +39,18 @@ export function Locations({navigation, route}){
                         </Pressable>
                     </View> }
             />  
-            <Button 
-                style={styles.button} 
-                mode='contained' 
-                onPress={() => navigation.navigate('Add New Location')}>Add a new location
-            </Button>
+            <View style={styles.buttons}>
+                <Button 
+                    style={styles.button}
+                    mode='contained' 
+                    onPress={() => navigation.navigate('Add New Location')}>Add a new location
+                </Button>
+                <Button 
+                    style={styles.button}
+                    mode='contained' 
+                    onPress={() => navigation.navigate('Searcher')}>Search new locations by keyword
+                </Button>
+            </View>
         </View>
     )
 }
@@ -51,7 +58,8 @@ export function Locations({navigation, route}){
 const styles = StyleSheet.create({
     background: {
         backgroundColor: '#444B6E',
-        height: '810'
+        flex: 1,
+        flexDirection: 'column' 
     },
     countrycell: {
       borderRadius: 10,
@@ -66,25 +74,25 @@ const styles = StyleSheet.create({
         color: '#285943'
     },
     button: {
-        margin: 15,
-        marginBottom: 45,
+        margin: 5,
         padding: 5,
         backgroundColor: '#3D315B'
+    },
+    buttons: {
+        height: 165,
+        width: 350,
+        alignSelf: 'center'
     },
     list: {
         borderWidth: 3,
         borderRadius:15,
         borderColor: '#708B75',
-        padding: 15,
-        margin: 10,
-        height: 600,
+        margin: 20,
         backgroundColor:'#708B75'
     },
     logged: {
-        borderRadius: 10,
         alignContent: 'center',
-        padding: 8,
-        margin: 10,
+        padding: 5,
         backgroundColor: '#9AB87A'
       },
   });

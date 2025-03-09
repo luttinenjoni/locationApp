@@ -15,8 +15,7 @@ export default function App() {
       <Stack.Navigator  screenOptions={{
           headerStyle: {
             backgroundColor: '#F8F991'
-          }
-        }}>
+          }}}>
         <Stack.Screen  name='Login/Register' component={Login}/>
         <Stack.Screen name='My Added Locations' component={Locations}/>
         <Stack.Screen name='Add New Location' component={AddLocation}/>
